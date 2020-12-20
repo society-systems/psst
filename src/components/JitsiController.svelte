@@ -47,6 +47,16 @@
     text-indent: -4rem;
     line-height: 0.6;
   }
+  @media screen and (max-width: 767px) {
+    .placeholder {
+      padding: var(--size-m);
+    }
+    h1 {
+      font-size: 5rem;
+      margin: 0 0 0 1rem;
+      text-indent: -1rem;
+    }
+  }
   h1 strong {
     display: block;
   }
