@@ -29,14 +29,7 @@
 <section class="banner">
   <h1 class="logo">psst</h1>
 
-  <p class="divider">.--. --- ... - -.-. --- .-. --- -. .. .- .-.. .. ... --</p>
-
-  <p>
-    is an open collective, study, solidarity and strategy group that commonly
-    works on for the urgent spread of interdisciplinary care, the
-    demilitarisation of the health education and labor sectors and the
-    ecological, systematic and agnotological comorbidity of Capital.
-  </p>
+  <p>psst is a platform to manage popup communities</p>
 </section>
 
 <section class="audio">
