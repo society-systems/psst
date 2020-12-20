@@ -32,6 +32,6 @@
   <p>psst is a platform to manage popup communities</p>
 </section>
 
-<section class="audio">
+<!--section class="audio">
   <Audio />
-</section>
+</section-->
