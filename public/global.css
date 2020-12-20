@@ -1,0 +1,173 @@
+:root {
+  --size-xxs: 0.0625rem;
+  --size-xs: 0.125rem;
+  --size-s: 0.5rem;
+  --size-m: 1rem;
+  --size-l: 2rem;
+  --size-xl: 3rem;
+  --size-xxl: 6rem;
+
+  --color-primary: #0e0e0e;
+  --color-secondary: #e91e63;
+  --color-tertiary: #e91e63;
+  --color-neutral: #acacac;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+::selection {
+  background: #cacaca44;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+  height: 100vh;
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: sans-serif;
+  background-color: var(--color-primary);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+a,
+a:visited {
+  color: inherit;
+}
+
+button,
+.button,
+a.button {
+  position: relative;
+  border: 0;
+  cursor: pointer;
+  padding: var(--size-s) var(--size-m);
+  font-family: monospace;
+  font-size: var(--size-m);
+  text-decoration: none;
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+  display: inline-block;
+  text-align: center;
+}
+
+button::after,
+.button::after {
+  transition: all 0.2s;
+  background: #000;
+  opacity: 0;
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+button:hover::after,
+.button:hover::after {
+  opacity: 0.1;
+}
+
+button:disabled,
+.button.disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+  text-decoration: line-through;
+}
+
+input,
+textarea {
+  color: white;
+  background-color: #ffffff33;
+  font-family: monospace;
+  border: none;
+  border-width: var(--size-xs);
+  border-color: var(--color-secondary);
+  padding: var(--size-s) var(--size-m);
+}
+
+::placeholder {
+  color: white;
+  font-style: italic;
+}
+
+input {
+  border-bottom-style: solid;
+}
+
+textarea {
+  /*border-left-style: solid;*/
+  resize: vertical;
+}
+
+input[type="checkbox"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: bottom;
+}
+
+button:focus,
+.button:focus,
+input:focus,
+textarea {
+  outline: none;
+  /*outline: var(--size-xs) solid var(--color-secondary);*/
+}
+
+button,
+.button,
+input {
+  transition: all 0.2s;
+}
+
+main {
+  min-height: 100vh;
+  padding: var(--size-m);
+  display: flex;
+  flex-direction: column;
+}
+
+section {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+p,
+label {
+  font-size: 1.25rem;
+  line-height: 1.4rem;
+}
+
+/* Extra Styles */
+
+.button.neutral,
+button.neutral {
+  background-color: var(--color-neutral);
+}
+
+input.neutral,
+.neutral input {
+  border-bottom-color: var(--color-neutral);
+}
