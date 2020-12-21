@@ -286,13 +286,6 @@ export const space = derived(
 
 export const inMeeting = writable(false);
 
-export const notifications = writable(undefined, async (set) => {
-  await navigator.serviceWorker.ready;
-  const worker = navigator.serviceWorker.controller;
-  const messageChannel = new MessageChannel();
-  messageChannel.port1.onmessage = (event) => {
-    console.log("Reply from Service Worker", event.data); // this comes from the ServiceWorker
-    set(!!event.data.subscription);
-  };
-  worker.postMessage({ action: "getSubscription" }, [messageChannel.port2]);
-});
+export const notifications = writable(
+  window.Notification.permission === "granted"
+);

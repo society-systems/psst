@@ -1,14 +1,3 @@
-async function saveSubscription(subscription) {
-  const response = await fetch("/api/save-subscription", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(subscription),
-  });
-  return response.json();
-}
-
 self.addEventListener("install", () => {
   console.log("[Service Worker] Install");
   self.skipWaiting();
@@ -17,12 +6,6 @@ self.addEventListener("install", () => {
 self.addEventListener("activate", () => {
   console.log("[Service Worker] Activate");
   clients.claim();
-
-  /*
-  const req = await fetch("/api/vapid-key");
-  const applicationServerKey = await req.text();
-
-  */
 });
 
 self.addEventListener("push", function (event) {
@@ -65,18 +48,20 @@ self.addEventListener("notificationclick", (event) => {
 
 self.addEventListener("message", async function (event) {
   console.log("[Service Worker] Got message:", event);
-  if (event.data.action === "getSubscription") {
-    const subscription = event.ports[0].postMessage({
-      subscription: (
-        await self.registration.pushManager.getSubscription()
-      ).toJSON(),
-    });
-  } else if (event.data.action === "subscribe") {
+  if (event.data.action === "subscribe") {
     const { publicKey } = event.data;
     try {
-      if (await self.registration.pushManager.getSubscription()) {
-        event.ports[0].postMessage({ error: "Already subscribed" });
-        return;
+      const currentSubscription = await self.registration.pushManager.getSubscription();
+      if (currentSubscription) {
+        try {
+          await currentSubscription.unsubscribe();
+          console.log("[Service Worker] Unsubscribed");
+        } catch (e) {
+          console.log("[Service Worker] Error unsubscribing");
+          console.error(e);
+        }
+        //event.ports[0].postMessage({ error: "Already subscribed" });
+        //return;
       }
       const options = {
         applicationServerKey: publicKey,
